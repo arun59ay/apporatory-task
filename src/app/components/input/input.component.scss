@@ -1,0 +1,52 @@
+.btn {
+    width: 100%;
+    text-align: center;
+    // margin-top: 30px;
+    // margin-bottom: 30px;
+  }
+  
+  .input-field-title {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 12px;
+  }
+  
+  form .error {
+    color: red;
+    font-size: 12px;
+    padding-top: 8px;
+  }
+  
+  form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+  
+  form .form-group.row {
+    flex-direction: row;
+  }
+  
+  .btn-form {
+    background: #2E7D32;
+    color: #fff;
+    padding: 10px 50px;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  
+  .eye-icon {
+    position: absolute;
+    top: 8px;
+    left: 10.3rem;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  .eye-icon-position{
+      position: relative;
+  }
+
+  

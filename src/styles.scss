@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+body{
+    height: 100vh;
+}
+
+/* do not group these rules */
+input::-webkit-input-placeholder {
+    color: #fff;
+}
+
+input:-moz-placeholder {
+    /* FF 4-18 */
+    color: #fff;
+    opacity: 1;
+}
+
+input::-moz-placeholder {
+    /* FF 19+ */
+    color: #fff;
+    opacity: 1;
+}
+
+input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #fff;
+}
+
+input::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #fff;
+}
+
+input::placeholder {
+    /* modern browser */
+    color: #fff;
+}
+
+.form-select {
+    background-image: url('./assets/images/down-arrow.png') !important;
+    background-repeat: no-repeat !important;
+    background-position:
+        calc(100% - 30px) 14px,
+        calc(100% - 20px) 14px,
+        100% 0 !important;
+    background-position: calc(100% - 8px) 8px, calc(100% - 20px) 5px, 100% 0 !important;
+}

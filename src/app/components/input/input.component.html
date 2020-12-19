@@ -1,0 +1,84 @@
+<form [formGroup]="form" (submit)="submitForm()" class="row">
+  <ng-template ngFor let-input [ngForOf]="formData">
+    <ng-container [ngSwitch]="input.controlType">
+
+      <!-- template for generate input -->
+      <ng-template [ngSwitchCase]="'text'">
+        <div class="form-group" [class]="input.grid">
+          <div>
+            <label [attr.for]="input.controlName" [ngStyle]="input.styleLabel" class="input-field-title">
+              {{input.controlName}}</label>
+              <div class="eye-icon-position">
+                <input [formControlName]="input.controlName" [ngStyle]="input.style" class="form-control"
+                [autocomplete]="input.autoComplete" [type]="input.valueType" [name]="input.controlName"
+                [required]="input.validators.required" [minlength]="input.validators.minlength"
+                [maxlength]="input.validators.maxlength" [placeholder]="input.placeholder" />
+                
+                <ion-icon *ngIf="input.password" class="eye-icon"
+                [name]="(input.valueType == 'password') ? 'eye-off' : 'eye'" slot="end"
+                (click)="input.valueType = (input.valueType == 'password') ? 'text' : 'password';">
+              </ion-icon>
+            </div>
+          </div>
+          
+          <div class="error"
+            *ngIf="form.get(input.controlName).invalid && (form.get(input.controlName).dirty || form.get(input.controlName).touched) || submitted">
+            <div *ngIf="form.get(input.controlName).errors?.required">
+              {{input.controlName}} is required
+            </div>
+            <div *ngIf="form.get(input.controlName).errors?.minlength">
+              Minimum length is {{input.validators.minlength}}
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      
+      <!-- template for generate select Option -->
+      <ng-template [ngSwitchCase]="'select'">
+        <div class="form-group mt-1" [class]="input.grid">
+          <label [attr.for]="input.controlName" [ngStyle]="input.styleLabel" class="input-field-title">
+            {{input.controlName}}</label>
+            <select [formControlName]="input.controlName" [name]="input.controlName"
+            [required]="input.validators.required" [ngStyle]="input.style" class="form-select"
+            aria-label="Default select example" [class.text-white]="input.selected" (change)="onSelect(input)">
+            <option value="" class="text-white">{{input.placeholder}}</option>
+            <option *ngFor="let option of input.options" [value]="option.value">{{option.optionName}}</option>
+          </select>
+          <div class="error"
+          *ngIf="form.get(input.controlName).invalid && (form.get(input.controlName).dirty || form.get(input.controlName).touched) || submitted">
+          <div *ngIf="form.get(input.controlName).errors?.required">
+            {{input.controlName}} is required
+          </div>
+          <div *ngIf="form.get(input.controlName).errors?.minlength">
+            Minimum length is {{input.validators.minlength}}
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    
+    <!-- template for generate CheckBox -->
+    <ng-template [ngSwitchCase]="'checkbox'">
+      <div class="form-group">
+        <div class="d-flex align-items-baseline">
+          <input [formControlName]="input.controlName" [ngStyle]="input.style" class="form-check-input"
+          type="checkbox" [name]="input.controlName" [required]="input.validators.required" />
+          <label [attr.for]="input.controlName" [value]="input.options[0].value" [ngStyle]="input.styleLabel"
+          class="input-field-title">
+          {{input.options[0].optionName}}</label>
+        </div>
+        <div class="error"
+        *ngIf="form.get(input.controlName).invalid && (form.get(input.controlName).dirty || form.get(input.controlName).touched) || submitted">
+            <div *ngIf="form.get(input.controlName).errors?.required">
+              {{input.options[0].value}}
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </ng-template>
+
+  <div class="btn">
+    <button type="submit" class="btn btn-success rounded-0"
+      [ngStyle]="{background: buttonText.color, border: buttonText.color}">{{buttonText.text}}</button>
+  </div>
+</form>
